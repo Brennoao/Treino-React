@@ -1,7 +1,9 @@
-<center># Treino-Reactjs</center>
+##### Essa Pasta visa o treino em na linguagem Reactjs.
 
 <div align="center" style="display: inline_block"><br>
-  
-  <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/reactjs.svg" />
- 
+      
+   <img  height="160em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+           
 </div>
+
+
