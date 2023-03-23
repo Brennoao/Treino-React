@@ -11,16 +11,21 @@ const Profile: React.FC = () => {
           <ProfileData
             username={'Brennoao'}
             name={'Brenno Alves'}
-            avatarUrl={''}
+            avatarUrl={'undefined'}
             followers={1}
             following={1}
-            company={''}
-            location={''}
-            email={undefined}
+            company={'undefined'}
+            location={'undefined'}
+            email={'undefined'}
+            blog={'undefined'}
           />
         </LeftSide>
 
-        <RightSide></RightSide>
+        <RightSide>
+          <Repos>
+            <h2>Random Repos</h2>
+          </Repos>
+        </RightSide>
       </Main>
     </Container>
   );
