@@ -7,3 +7,14 @@
 </div>
 
 
+# Entrar em diretório:
+cd nome-diretório
+
+# Sair do diretório:
+cd ..
+
+# Criar diretório:
+mkdir nome-do-diretório
+
+# Criar Arquivo:
+touch nome-do-arquivo-extensão
