@@ -1,9 +1,0 @@
-.pagination .page-link .next {
-    background-color: #ff0000;
-    border-color: #ff0000;
-}
-
-.pagination .page-item.active .page-link .next {
-    background-color: #0000ff;
-    border-color: #0000ff;
-}

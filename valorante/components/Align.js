@@ -3,11 +3,9 @@ import { Container } from 'react-bootstrap'
 
 const Align = (props) => {
   return (
-    <>
-      <Container>
-        {props.children}
-      </Container>
-    </>
+    <Container>
+      {props.children}
+    </Container>
   )
 }
 
