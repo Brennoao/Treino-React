@@ -8,29 +8,39 @@ const infoWeapons = ({ ExportInfo }) => {
 
     console.log(ExportInfo)
     console.log(ExportInfo.weaponStats.damageRanges)
+
+    const infos = ExportInfo.weaponStats.damageRanges
+    // console.log(infos.headDamage)
+
     return (
         <>
             <Header />
             <Align>
-                <Card>
-                    <Card.Header className='text-center text-light bg-danger'>{ExportInfo.displayName}</Card.Header>
+                <Card border='danger' className='mb-3 border border-3'>
+                    <Card.Header className='text-center text-light bg-danger rounded-0'>{ExportInfo.displayName}</Card.Header>
+                    <Col border='danger' className='d-flex justify-content-center border border-top-0 border-end-0 border-start-0 border-danger p-4'>
+                        <Card.Img style={{ width: '40rem' }} variant="top" src={ExportInfo.displayIcon} />
+                    </Col>
                     <Card.Body>
-                        <div >
-                            <Col className='d-flex justify-content-center'>
-                                <Card.Img style={{ width: '40rem' }} variant="top" src={ExportInfo.displayIcon} />
+                        <Row>
+                            <Col md={4} className='text-dark'>
+                                <h3 className='text-danger'>Dano</h3>
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Cabeça:</strong> {item.headDamage}</p>))}
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Corpo:</strong> {item.bodyDamage}</p>))}
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Perna:</strong> {item.legDamage}</p>))}
                             </Col>
-                            <Row>
-                                <Col md={4} className='text-dark'>
-                                    {/* <p><strong>Cabeça:</strong> {ExportInfo.weaponsStats.damageRanges.bodyDamage}</p> */}
-                                </Col>
-                            </Row>
-                        </div>
+                            <Col md={4} className='text-dark'>
+                                <h3 className='text-danger'>Dano</h3>
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Cabeça:</strong> {item.headDamage}</p>))}
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Corpo:</strong> {item.bodyDamage}</p>))}
+                                {infos.map(item => (<p key={1}><strong className='text-danger'>Perna:</strong> {item.legDamage}</p>))}
+                            </Col>
+                        </Row>
                     </Card.Body>
                 </Card>
 
                 <h2>Skins</h2>
-
-                <Table striped bordered hover>
+                <Table striped bordered hover variant='danger'>
                     <thead>
                         <tr>
                             <th>Icon</th>
@@ -63,12 +73,12 @@ export async function getServerSideProps(context) {
 
     const Info = await apiValorante.get('/weapons/' + id)
     const ExportInfo = Info.data.data
-    
+
     // const Skin = await apiValorante.get('/weapons/skins/' + id)
     // const ExportSkin = Skin.data.data
 
     return {
-        props: { ExportInfo,  }
+        props: { ExportInfo, }
     }
 }
 
