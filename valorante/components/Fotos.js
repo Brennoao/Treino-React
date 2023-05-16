@@ -7,7 +7,7 @@ const Fotos = (props) => {
         <Card>
             <Card.Header className='text-center text-light bg-danger'>{props.Name}</Card.Header>
             <Card.Body>
-                <Link href={props.Link}>
+                <Link href={props.Link + props.uuid}>
                     <Card.Img variant="top" src={props.img} />
                 </Link>
             </Card.Body>
