@@ -1,6 +1,6 @@
 import Align from '@/components/Align'
-import Fotos from '@/components/Fotos'
-import Header from '@/components/Header'
+import Fotos from '../components/Fotos'
+import Header from '..//components/Header'
 import apiValorante from '@/services/apiValorante'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
@@ -14,7 +14,7 @@ const index = ({ Weapons }) => {
             <Align>
                 <Row>
                     {Weapons.map(item => (
-                        <Col key={item.uuid} md={3} className='mb-2'>
+                        <Col key={item.uuid} md={3} className='mb-4'>
                                 <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoWeapons/' uuid={item.uuid}/>
                         </Col>
                     ))}

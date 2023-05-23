@@ -1,16 +1,25 @@
 import Align from '@/components/Align'
-import Header from '@/components/Header'
+import Header from '../../components/Header'
 import apiValorante from '@/services/apiValorante'
-import React from 'react'
-import { Card, Col, Row, Table } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Accordion, Card, Col, Modal, Row, Table } from 'react-bootstrap'
 
 const infoWeapons = ({ ExportInfo }) => {
 
-    console.log(ExportInfo)
-    console.log(ExportInfo.weaponStats.damageRanges)
+    const [showModal, setShowModal] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedSkin, setSelectedSkin] = useState(null);
 
-    const infos = ExportInfo.weaponStats.damageRanges
-    // console.log(infos.headDamage)
+    const handleImageClick = (image, skin) => {
+        setSelectedImage(image);
+        setSelectedSkin(skin);
+        setShowModal(true);
+    }
+
+    const infos = ExportInfo.weaponStats.damageRanges; const Correct = infos[0]; const Skins = ExportInfo.skins;
+
+    console.log(Correct)
+    console.log(Skins)
 
     return (
         <>
@@ -25,39 +34,60 @@ const infoWeapons = ({ ExportInfo }) => {
                         <Row>
                             <Col md={4} className='text-dark'>
                                 <h3 className='text-danger'>Dano</h3>
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Cabeça:</strong> {item.headDamage}</p>))}
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Corpo:</strong> {item.bodyDamage}</p>))}
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Perna:</strong> {item.legDamage}</p>))}
-                            </Col>
-                            <Col md={4} className='text-dark'>
-                                <h3 className='text-danger'>Dano</h3>
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Cabeça:</strong> {item.headDamage}</p>))}
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Corpo:</strong> {item.bodyDamage}</p>))}
-                                {infos.map(item => (<p key={1}><strong className='text-danger'>Perna:</strong> {item.legDamage}</p>))}
+                                <p><strong className='text-danger'>Cabeça:</strong> {Correct.headDamage}</p>
+                                <p><strong className='text-danger'>Corpo:</strong> {Correct.bodyDamage}</p>
+                                <p><strong className='text-danger'>Perna:</strong> {Correct.legDamage}</p>
                             </Col>
                         </Row>
                     </Card.Body>
                 </Card>
 
                 <h2>Skins</h2>
-                <Table striped bordered hover variant='danger'>
+                <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>Icon</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Nome</th>
+                            <th>Foto</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            {/* <td>{ExportInfo.skin.uuid}</td> */}
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+                        {Skins.map(item => (
+                            <React.Fragment key={item.uuid}>
+                                {item.displayIcon ? (
+                                    <tr key={item.uuid}>
+                                        <td>{item.displayName}</td>
+                                        <td>
+                                            <img src={item.displayIcon} onClick={() => handleImageClick(item.displayIcon, item)} />
+                                        </td>
+                                    </tr>
+                                ) : ('')}
+                            </React.Fragment>
+                        ))}
                     </tbody>
                 </Table>
+
+                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                    <Modal.Body className="show-grid">
+                        <Row md={12}>
+                            <img className='h-100 mb-5' src={selectedImage} />
+                            <Accordion>
+                                {selectedSkin && selectedSkin.levels.map((level, i) => (
+                                    <Accordion.Item eventKey={level.uuid} key={level.uuid}>
+                                        <Accordion.Header>{level.displayName}</Accordion.Header>
+                                        <Accordion.Body>
+                                            <Card className='border border-0 mb-5'> <img src={level.displayIcon} /> </Card>
+                                            {level.streamedVideo ? (
+                                                <div className="embed-responsive embed-responsive-16by9">
+                                                    <iframe className="embed-responsive-item" src={level.streamedVideo} allowFullScreen ></iframe>
+                                                </div>
+                                            ) : ''}
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                ))}
+                            </Accordion>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
             </Align>
         </>
     )
@@ -68,17 +98,11 @@ export default infoWeapons
 export async function getServerSideProps(context) {
     const id = context.params.id
 
-    // const IdSkin = await apiValorante.get('/weapons/skins' + id)
-    // const ExportIdSkin = IdSkin.data.data.skin.uuid
-
     const Info = await apiValorante.get('/weapons/' + id)
     const ExportInfo = Info.data.data
 
-    // const Skin = await apiValorante.get('/weapons/skins/' + id)
-    // const ExportSkin = Skin.data.data
-
     return {
-        props: { ExportInfo, }
+        props: { ExportInfo }
     }
 }
 
