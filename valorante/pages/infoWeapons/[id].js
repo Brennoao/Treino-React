@@ -64,7 +64,7 @@ const infoWeapons = ({ ExportInfo }) => {
                             </React.Fragment>
                         ))}
                     </tbody>
-                </Table>
+                </Table>``
 
                 <Modal show={showModal} onHide={() => setShowModal(false)}>
                     <Modal.Body className="show-grid">

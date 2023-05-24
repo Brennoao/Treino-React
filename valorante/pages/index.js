@@ -5,13 +5,21 @@ import apiValorante from '@/services/apiValorante'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 
-const index = ({ Weapons }) => {
+const index = ({ Weapons, Agents }) => {
 
+    console.log(Agents)
     console.log(Weapons)
     return (
         <>
             <Header />
             <Align>
+                <Row>
+                    {Agents.map(item => (
+                        <Col key={item.uuid} md={3} className='mb-4'>
+                                <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoAgents/' uuid={item.uuid}/>
+                        </Col>
+                    ))}
+                    </Row>
                 <Row>
                     {Weapons.map(item => (
                         <Col key={item.uuid} md={3} className='mb-4'>
@@ -30,7 +38,10 @@ export async function getServerSideProps(context) {
     const PushWeapons = await apiValorante.get('/weapons')
     const Weapons = PushWeapons.data.data
 
+    const PushAgents = await apiValorante.get('/agents')
+    const Agents = PushAgents.data.data
+
     return {
-        props: { Weapons }, // will be passed to the page component as props
+        props: { Weapons, Agents }, // will be passed to the page component as props
     }
 }
