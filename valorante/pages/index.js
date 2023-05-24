@@ -14,16 +14,18 @@ const index = ({ Weapons, Agents }) => {
             <Header />
             <Align>
                 <Row>
+                    <h3 className='py-2 bg-danger text-light text-center w-100 mb-4'>Agentes</h3>
                     {Agents.map(item => (
                         <Col key={item.uuid} md={3} className='mb-4'>
-                                <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoAgents/' uuid={item.uuid}/>
+                            <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoAgents/' uuid={item.uuid} />
                         </Col>
                     ))}
-                    </Row>
+                </Row>
                 <Row>
+                    <h3 className='py-2 bg-danger text-light text-center w-100 mb-4'>Armas</h3>
                     {Weapons.map(item => (
                         <Col key={item.uuid} md={3} className='mb-4'>
-                                <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoWeapons/' uuid={item.uuid}/>
+                            <Fotos Name={item.displayName} img={item.displayIcon} Link='/infoWeapons/' uuid={item.uuid} />
                         </Col>
                     ))}
                 </Row>
