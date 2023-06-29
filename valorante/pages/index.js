@@ -1,7 +1,7 @@
-import Align from '@/components/Align'
+import Align from '..//components/Align'
 import Fotos from '../components/Fotos'
 import Header from '..//components/Header'
-import apiValorante from '@/services/apiValorante'
+import apiValorante from '../services/apiValorante'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 
