@@ -1,0 +1,20 @@
+.Logo {
+  width: auto; height: 3.5em;
+  margin: 1em 0 0 1em;
+}
+
+.Block {
+  display: flex; flex-wrap: wrap; gap: 1em;
+  margin: 1em;
+  width: 100%;
+}
+
+.Img {
+  width: 100%; height: auto;
+}
+
+.BlockIni {
+  /* background: var(--Red); */
+  border-radius: 1em;
+  box-shadow: 0 0 10px var(--Black);
+}

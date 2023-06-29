@@ -4,11 +4,29 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "aonline",
+        "Blackb",
         "CLIENTID",
         "CLIENTSECRET",
+        "conline",
+        "conlineh",
+        "Conlineh",
+        "donline",
+        "Donline",
+        "donlineh",
+        "Donlineh",
         "Iceandfire",
-        "localstorage"
+        "localstorage",
+        "logoportalonl"
     ],
-    "ignoreWords": [],
+    "ignoreWords": [
+        "Aonline",
+        "Aonlineh",
+        "Blackbh",
+        "Conline",
+        "aonlineh",
+        "blackb",
+        "blackbh"
+    ],
     "import": []
 }
